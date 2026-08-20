@@ -1,24 +1,48 @@
-# README
+# Department Management System
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A Ruby on Rails web application built to manage Departments and their associated Students, Teachers, and Laboratories based on a 1-to-Many entity relationship model.
 
-Things you may want to cover:
+---
 
-* Ruby version
+## 📌 Features & Entity Relationships
 
-* System dependencies
+The system manages four core entities:
 
-* Configuration
+* **Department** (`name`, `location`)
+  * Has many **Students**
+  * Has many **Teachers**
+  * Has many **Laboratories**
+* **Student** (`name`, `year_level`, `program`, `department_id`)
+  * Belongs to a **Department**
+* **Teacher** (`name`, `email`, `specialization`, `department_id`)
+  * Belongs to a **Department**
+* **Laboratory** (`name`, `location`, `department_id`)
+  * Belongs to a **Department**
 
-* Database creation
+---
 
-* Database initialization
+## 🛠️ Tech Stack
 
-* How to run the test suite
+* **Framework:** Ruby on Rails 8.1
+* **Database:** MySQL 8.0
+* **Containerization:** Docker & Docker Compose
 
-* Services (job queues, cache servers, search engines, etc.)
+---
 
-* Deployment instructions
+## 🚀 Getting Started
 
-* ...
+### Prerequisites
+
+Ensure you have the following installed on your host machine:
+* [Docker](https://www.docker.com/)
+* [Docker Compose](https://docs.docker.com/compose/)
+* [Git](https://git-scm.com/)
+
+---
+
+### Setup Instructions
+
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/BrianMatthewRivero/DepartmentStudentApplicationLE1.git](https://github.com/BrianMatthewRivero/DepartmentStudentApplicationLE1.git)
+   cd DepartmentStudentApplicationLE1
