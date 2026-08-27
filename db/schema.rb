@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_20_021229) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_27_060009) do
   create_table "departments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "location"
@@ -35,6 +35,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_20_021229) do
     t.datetime "updated_at", null: false
     t.integer "year_level"
     t.index ["department_id"], name: "index_students_on_department_id"
+  end
+
+  create_table "subjects", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "teachers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
