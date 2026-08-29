@@ -11,14 +11,18 @@
       </tr>
     </thead>
     <tbody>
-  <% @teacher.subjects.each do |subject| %>
-    <tr>
-      <td><%= subject.name %></td>
-    </tr>
+      <% @teacher.subjects.each do |subject| %>
+        <tr>
+          <td><%= subject.name %></td>
+        </tr>
       <% end %>
     </tbody>
-    </table>
+  </table>
 <% else %>
+  <p><em>No subjects assigned to this teacher yet.</em></p>
+<% end %>
+
+<br>
 
 <div>
   <%= link_to "Edit this teacher", edit_teacher_path(@teacher) %> |

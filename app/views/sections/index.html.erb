@@ -1,0 +1,33 @@
+<h1>All Class Sections</h1>
+
+<%= link_to "Create New Section", new_section_path %>
+<br><br>
+
+<table border="1" cellpadding="8">
+  <thead>
+    <tr>
+      <th>Section Name</th>
+      <th>Subject</th>
+      <th>Teacher</th>
+      <th>Room</th>
+      <th>Timeslot</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sections.each do |section| %>
+      <tr>
+        <td><%= section.name %></td>
+        <td><%= section.subject&.subject_name %></td>
+        <td><%= section.subject&.teacher&.name %></td>
+        <td><%= section.room %></td>
+        <td><%= section.timeslot %></td>
+        <td>
+          <%= link_to "View Roster", section_path(section) %> |
+          <%= link_to "Edit", edit_section_path(section) %> |
+          <%= button_to "Delete", section_path(section), method: :delete, data: { confirm: "Are you sure?" } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

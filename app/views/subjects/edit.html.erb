@@ -1,12 +1,9 @@
-<% content_for :title, "Editing subject" %>
-
-<h1>Editing subject</h1>
+<h1>Editing Subject</h1>
 
 <%= render "form", subject: @subject %>
 
 <br>
-
 <div>
-  <%= link_to "Show this subject", @subject %> |
-  <%= link_to "Back to subjects", subjects_path %>
+  <%= link_to "Show", @subject %> |
+  <%= link_to "Back to Subjects", subjects_path %>
 </div>

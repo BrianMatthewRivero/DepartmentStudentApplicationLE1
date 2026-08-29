@@ -1,24 +1,31 @@
-<%= form_with(model: subject) do |form| %>
+<%= form_with(model: subject, local: true) do |f| %>
   <% if subject.errors.any? %>
-    <div style="color: red">
+    <div style="color: red; margin-bottom: 15px;">
       <h2><%= pluralize(subject.errors.count, "error") %> prohibited this subject from being saved:</h2>
-
       <ul>
-        <% subject.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <% subject.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-<div>
-    <%= form.label :teacher_id, "Teacher", style: "display: block" %>
-    <%= form.collection_select :teacher_id, Teacher.order(:name), 
-    :id, 
-    :name,
-    { prompt: "Select a teacher" } %>
-</div>
+  <div style="margin-bottom: 15px;">
+    <%= f.label :subject_name, "Subject Name" %><br>
+    <%= f.text_field :subject_name, required: true %>
+  </div>
 
-    <%= form.submit %>
+  <div style="margin-bottom: 15px;">
+    <%= f.label :code, "Subject Code (e.g. CS101)" %><br>
+    <%= f.text_field :code %>
+  </div>
+
+  <div style="margin-bottom: 15px;">
+    <%= f.label :teacher_id, "Assigned Instructor / Teacher" %><br>
+    <%= f.collection_select :teacher_id, Teacher.all, :id, :name, { prompt: "Select a Teacher..." }, { required: true } %>
+  </div>
+
+  <div>
+    <%= f.submit %>
   </div>
 <% end %>

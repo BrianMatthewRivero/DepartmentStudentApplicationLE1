@@ -1,0 +1,41 @@
+<h1>Section: <%= @section.name %></h1>
+
+<p>
+  <strong>Subject:</strong> <%= @section.subject&.name %><br>
+  <strong>Instructor:</strong> <%= @section.subject&.teacher&.name %><br>
+  <strong>Room:</strong> <%= @section.room %><br>
+  <strong>Timeslot:</strong> <%= @section.timeslot %>
+</p>
+
+<hr>
+
+<h2>Enrolled Students (<%= @section.students.count %>)</h2>
+
+<% if @section.students.any? %>
+  <table border="1" cellpadding="8">
+    <thead>
+      <tr>
+        <th>Student Name</th>
+        <th>Program</th>
+        <th>Year Level</th>
+        <th>Department</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @section.students.each do |student| %>
+        <tr>
+          <td><%= student.name %></td>
+          <td><%= student.program %></td>
+          <td><%= student.year_level %></td>
+          <td><%= student.department&.name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p><em>No students enrolled in this section yet.</em></p>
+<% end %>
+
+<br>
+<%= link_to "Back to Sections", sections_path %> |
+<%= link_to "Enroll Student Here", new_classlist_path %>
