@@ -1,16 +1,33 @@
 <p style="color: green"><%= notice %></p>
 
-<% content_for :title, "Subjects" %>
-
 <h1>Subjects</h1>
 
-<div id="subjects">
-  <% @subjects.each do |subject| %>
-    <%= render subject %>
-    <p>
-      <%= link_to "Show this subject", subject %>
-    </p>
-  <% end %>
-</div>
+<%= link_to "New Subject", new_subject_path %>
+<br><br>
 
-<%= link_to "New subject", new_subject_path %>
+<table border="1" cellpadding="8" style="border-collapse: collapse; width: 100%;">
+  <thead>
+    <tr style="background-color: #f2f2f2;">
+      <th>Code</th>
+      <th>Subject Name</th>
+      <th>Assigned Instructor</th>
+      <th>Sections Count</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @subjects.each do |subject| %>
+      <tr>
+        <td><%= subject.code %></td>
+        <td><%= subject.subject_name %></td>
+        <td><%= subject.teacher&.name %></td>
+        <td><%= subject.sections.size %></td>
+        <td>
+          <%= link_to "Show", subject_path(subject) %> |
+          <%= link_to "Edit", edit_subject_path(subject) %> |
+          <%= button_to "Delete", subject_path(subject), method: :delete, data: { confirm: "Are you sure?" }, style: "display: inline;" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

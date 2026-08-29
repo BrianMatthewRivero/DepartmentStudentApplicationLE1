@@ -1,10 +1,24 @@
-<p style="color: green"><%= notice %></p>
+<h1><%= @subject.name %> (<%= @subject.code %>)</h1>
 
-<%= render @subject %>
+<p>
+  <strong>Assigned Instructor:</strong> <%= @subject.teacher&.name %>
+</p>
 
+<hr>
+
+<h2>Associated Sections</h2>
+<% if @subject.sections.any? %>
+  <ul>
+    <% @subject.sections.each do |section| %>
+      <li><%= link_to section.name, section_path(section) %> — Room: <%= section.room %> (<%= section.timeslot %>)</li>
+    <% end %>
+  </ul>
+<% else %>
+  <p><em>No sections created for this subject yet.</em></p>
+<% end %>
+
+<br>
 <div>
-  <%= link_to "Edit this subject", edit_subject_path(@subject) %> |
-  <%= link_to "Back to subjects", subjects_path %>
-
-  <%= button_to "Destroy this subject", @subject, method: :delete %>
+  <%= link_to "Edit Subject", edit_subject_path(@subject) %> |
+  <%= link_to "Back to Subjects", subjects_path %>
 </div>
