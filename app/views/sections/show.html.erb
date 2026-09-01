@@ -1,7 +1,7 @@
 <h1>Section: <%= @section.name %></h1>
 
 <p>
-  <strong>Subject:</strong> <%= @section.subject&.name %><br>
+  <strong>Subject:</strong> <%= @section.subject&.subject_name %><br>
   <strong>Instructor:</strong> <%= @section.subject&.teacher&.name %><br>
   <strong>Room:</strong> <%= @section.room %><br>
   <strong>Timeslot:</strong> <%= @section.timeslot %>
