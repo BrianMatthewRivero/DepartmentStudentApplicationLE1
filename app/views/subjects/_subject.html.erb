@@ -1,2 +1,16 @@
 <div id="<%= dom_id subject %>">
 </div>
+    <strong>subject_name:</strong>
+    <%= subject.subject_name %>
+    </div>
+
+    <div>
+    <strong>code:</strong>
+    <%= subject.code %>
+    </div>
+
+    <div>
+    <strong>teacher:</strong>
+    <%= subject.teacher&.name %>
+    </div>
+    
