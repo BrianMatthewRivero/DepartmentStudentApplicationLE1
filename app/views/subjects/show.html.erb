@@ -1,24 +1,44 @@
-<h1><%= @subject.subject_name %> (<%= @subject.code %>)</h1>
+  <h1><%= @subject.subject_name %> (<%= @subject.code %>)</h1>
 
-<p>
-  <strong>Assigned Instructor:</strong> <%= @subject.teacher&.name %>
-</p>
+  <p>
+    <strong>Assigned Instructor:</strong> <%= @subject.teacher&.name %>
+  </p>
 
-<hr>
+  <hr>
 
-<h2>Associated Sections</h2>
-<% if @subject.sections.any? %>
-  <ul>
-    <% @subject.sections.each do |section| %>
-      <li><%= link_to section.name, section_path(section) %> — Room: <%= section.room %> (<%= section.timeslot %>)</li>
-    <% end %>
-  </ul>
-<% else %>
-  <p><em>No sections created for this subject yet.</em></p>
+  <% if @subject.sections.any? %>
+  <% @subject.sections.each do |section| %>
+    <h3><%= section.name %></h3>
+    <table>
+      <thead>
+        <tr>
+          <td colspan="5">
+            Room: <%= section.room %> |
+            Timeslot: <%= section.timeslot %> |
+            Teacher: <%= section.subject.teacher.name %>
+          </td>
+        </tr>
+        <th align="left"> Name </th>
+        <th align="left"> Year Level </th>
+        <th align="left"> Program </th>
+      </thead>
+      <tbody>
+          <% section.students.each do |student| %>
+          <tr>
+            <td><%= student.name %></td>
+            <td><%= student.year_level %></td>
+            <td><%= student.program %></td>  
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+  <% else %>
+  <p>No sections found for this subject.</p>
 <% end %>
 
-<br>
-<div>
-  <%= link_to "Edit Subject", edit_subject_path(@subject) %> |
-  <%= link_to "Back to Subjects", subjects_path %>
-</div>
+  <br>
+  <div>
+    <%= link_to "Edit Subject", edit_subject_path(@subject) %> |
+    <%= link_to "Back to Subjects", subjects_path %>
+  </div>
